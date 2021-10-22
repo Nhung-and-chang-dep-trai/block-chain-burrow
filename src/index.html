@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Watch Store</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Unique Watch Store</h1>
+          <hr />
+          <br />
+        </div>
+      </div>
+
+      <div id="watchRow" class="row">
+        <!-- WATCHES LOAD HERE -->
+      </div>
+    </div>
+
+    <div id="watchTemplate" style="display: none">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-watch">
+          <div class="panel-heading">
+            <h3 class="panel-title">Name</h3>
+          </div>
+          <div class="panel-body">
+            <img
+              alt="140x140"
+              data-src="holder.js/140x140"
+              class="img-rounded img-center"
+              style="width: 100%"
+              src="about:blank"
+              data-holder-rendered="true"
+            />
+            <br /><br />
+            <strong>Brand</strong>: <span class="watch-brand">Brand </span
+            ><br />
+            <strong>Color</strong>: <span class="watch-color">Color</span><br />
+            <strong>Price</strong>:
+            <span class="watch-price">Price</span><br /><br />
+            <button class="btn btn-primary btn-buy" type="button" data-id="0">
+              Buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript">
+      //hiển thị list watch
+      $.getJSON("watches.json", function (data) {
+        var watchRow = $("#watchRow");
+        $("#watchRow").html("");
+        //clone để sao chép
+        var watchTemplate = $("#watchTemplate").clone();
+        for (i = 0; i < data.length; i++) {
+          watchTemplate.find(".panel-title").text(data[i].name);
+          watchTemplate.find("img").attr("src", data[i].picture);
+          watchTemplate.find(".watch-brand").text(data[i].brand);
+          watchTemplate.find(".watch-color").text(data[i].color);
+          watchTemplate.find(".watch-price").text(data[i].price);
+          watchTemplate.find(".btn-buy").attr("data-id", data[i].id);
+          watchRow.append(watchTemplate.html());
+        }
+      });
+      // viết tắt của $(document).ready(function() { ... });
+      $(function () {
+        var connected = false;
+        var socket = io();
+        //khi có sự kiện buy từ socket khác hoặc server gửi tới
+        socket.on("sold", function (msg) {
+          var str = msg.toString();
+          //chia tin nhắn thành chuổi
+          var array = str.split(",");
+          var i = 0;
+          for (i = 0; i < array.length; i++) {
+            // duyệt qua từng phần tử có data-id=array[i]
+            $('[data-id="' + array[i] + '"]').each(function (i, elem) {
+              //chuyển tên nút "buy" thành "sold" và thay đổi CSS của nút (btn-success: nút màu xanh lá)
+              $(elem).html("Sold").attr("class", "btn btn-success btn-buy");
+            });
+          }
+        });
+
+        //khi người dúng nhấn vào nút có class 'btn-buy'
+        $(document).on("click", ".btn-buy", function () {
+          //lấy id của watch
+          var id = $(this).data("id");
+          //phát ra sự kiện "buy" với dữ liệu là id của watch
+          socket.emit("buy", id); //??? 3
+        });
+
+        //sự kiện kết nối
+        socket.on("connect", function () {
+          console.log("connected");
+          connected = true;
+        });
+
+        //khi mất kết nối thì thử lại sau 5 s
+        socket.on("disconnect", function () {
+          connected = false;
+          console.log("disconnected");
+          retryConnectOnFailure(5);
+        });
+
+        var retryConnectOnFailure = function (retryInMilliseconds) {
+          setTimeout(function () {
+            if (!connected) {
+              $.get("/ping", function (data) {
+                connected = true;
+                window.location.href = window.location.pathname;
+              });
+              retryConnectOnFailure(retryInMilliseconds);
+            }
+          }, retryInMilliseconds);
+        };
+
+        // start connection
+        socket.connect();
+        retryConnectOnFailure(5);
+      });
+    </script>
+  </body>
+</html>

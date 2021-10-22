@@ -1,0 +1,130 @@
+[
+  {
+    "id": 0,
+    "name": "Eco-Drive Satellite Wave F900",
+    "picture": "images/Citizen.jpg",
+    "brand": "Citizen",
+    "color": "Chronograph Blue",
+    "price": "0.86 ETH"
+  },
+  {
+    "id": 1,
+    "name": "Tread 1E",
+    "picture": "images/Devon.jpg",
+    "brand": "Devon",
+    "color": "Black",
+    "price": "4.88 ETH"
+  },
+  {
+    "id": 2,
+    "name": "Apex Element Ceramic",
+    "picture": "images/Eone.jpg",
+    "brand": "Eone",
+    "color": "Khaki Green",
+    "price": "0.09 ETH"
+  },
+  {
+    "id": 3,
+    "name": "Sirius Tourbillon",
+    "picture": "images/Nubeo.jpg",
+    "brand": "Nubeo",
+    "color": "Silver Bright",
+    "price": "1.1 ETH"
+  },
+  {
+    "id": 4,
+    "name": "Canfield Sport 45mm",
+    "picture": "images/Shinola.jpg",
+    "brand": "Shinola",
+    "color": "Black Gold",
+    "price": "0.31 ETH"
+  },
+  {
+    "id": 5,
+    "name": "Bravado BA7-50-SS CAGE",
+    "picture": "images/Sisu.jpg",
+    "brand": "SISU",
+    "color": "Silver",
+    "price": "0.47 ETH"
+  },
+  {
+    "id": 6,
+    "name": "Batman Quantum Automatic",
+    "picture": "images/Undone.jpg",
+    "brand": "UNDONE",
+    "color": "Black",
+    "price": "0.22 ETH"
+  },
+  {
+    "id": 7,
+    "name": "Leadfoot Automatic",
+    "picture": "images/Xeric.jpg",
+    "brand": "Xeric",
+    "color": "Gunmetal Green",
+    "price": "0.24 ETH"
+  },
+  {
+    "id": 8,
+    "name": "Eco-Drive Satellite Wave F900",
+    "picture": "images/Citizen.jpg",
+    "brand": "Citizen",
+    "color": "Chronograph Blue",
+    "price": "0.86 ETH"
+  },
+  {
+    "id": 9,
+    "name": "Tread 1E",
+    "picture": "images/Devon.jpg",
+    "brand": "Devon",
+    "color": "Black",
+    "price": "4.88 ETH"
+  },
+  {
+    "id": 10,
+    "name": "Apex Element Ceramic",
+    "picture": "images/Eone.jpg",
+    "brand": "Eone",
+    "color": "Khaki Green",
+    "price": "0.09 ETH"
+  },
+  {
+    "id": 11,
+    "name": "Sirius Tourbillon",
+    "picture": "images/Nubeo.jpg",
+    "brand": "Nubeo",
+    "color": "Silver Bright",
+    "price": "1.1 ETH"
+  },
+  {
+    "id": 12,
+    "name": "Canfield Sport 45mm",
+    "picture": "images/Shinola.jpg",
+    "brand": "Shinola",
+    "color": "Black Gold",
+    "price": "0.31 ETH"
+  },
+  {
+    "id": 13,
+    "name": "Bravado BA7-50-SS CAGE",
+    "picture": "images/Sisu.jpg",
+    "brand": "SISU",
+    "color": "Silver",
+    "price": "0.47 ETH"
+  },
+  {
+    "id": 14,
+    "name": "Batman Quantum Automatic",
+    "picture": "images/Undone.jpg",
+    "brand": "UNDONE",
+    "color": "Black",
+    "price": "0.22 ETH"
+  },
+  {
+    "id": 15,
+    "name": "Leadfoot Automatic",
+    "picture": "images/Xeric.jpg",
+    "brand": "Xeric",
+    "color": "Gunmetal Green",
+    "price": "0.24 ETH"
+  }
+]
